@@ -217,6 +217,49 @@
     #trace-path{animation:none;stroke-dashoffset:0;}
     html{scroll-behavior:auto;}
   }
+  /* ===========================
+   HERO BUTTONS
+=========================== */
+
+.hero-buttons{
+  display:flex;
+  gap:14px;
+  flex-wrap:wrap;
+  margin:28px 0 34px;
+}
+
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:12px 20px;
+  border-radius:2px;
+  text-decoration:none;
+  font-family:'IBM Plex Mono', monospace;
+  font-size:13px;
+  transition:all .2s ease;
+}
+
+.btn-primary{
+  background:var(--teal);
+  color:#fff;
+  border:1px solid var(--teal);
+}
+
+.btn-primary:hover{
+  background:#18584f;
+}
+
+.btn-secondary{
+  border:1px solid var(--teal);
+  color:var(--teal);
+  background:transparent;
+}
+
+.btn-secondary:hover{
+  background:var(--teal);
+  color:#fff;
+}
 </style>
 </head>
 <body>
@@ -244,6 +287,21 @@
     Data Quality • SQL • Python
   </strong>
 </p>
+
+<div class="hero-buttons">
+  <a href="resume/Aniket_Makhal_Resume_.pdf" class="btn btn-primary" target="_blank">
+    📄 Download Resume
+  </a>
+
+  <a href="https://www.linkedin.com/in/aniketmakhal10/" class="btn btn-secondary" target="_blank">
+    💼 LinkedIn
+  </a>
+
+  <a href="https://github.com/aniixiety" class="btn btn-secondary" target="_blank">
+    💻 GitHub
+  </a>
+
+</div>
     <div class="trace-box">
       <svg viewBox="0 0 900 120" width="100%" height="110" preserveAspectRatio="none" role="img" aria-label="Line drawing that moves from a heartbeat waveform into a data chart trace">
         <path id="trace-path"
@@ -265,11 +323,26 @@
     </div>
 
     <div class="vitals">
-      <div class="vital"><div class="num">5+</div><div class="lbl">Years in US Healthcare Operations</div>
-      <div class="vital"><div class="num">7+</div><div class="lbl">Specialties Supported</div></div>
-      <div class="vital"><div class="num">7+</div><div class="lbl">EHR Platforms</div></div>
-      <div class="vital"><div class="num">2028</div><div class="lbl">GCP Cert Valid Through</div></div>
-    </div>
+  <div class="vital">
+    <div class="num">5+</div>
+    <div class="lbl">Years in US Healthcare Operations</div>
+  </div>
+
+  <div class="vital">
+    <div class="num">7+</div>
+    <div class="lbl">Specialties Supported</div>
+  </div>
+
+  <div class="vital">
+    <div class="num">7+</div>
+    <div class="lbl">EHR Platforms</div>
+  </div>
+
+  <div class="vital">
+    <div class="num">2028</div>
+    <div class="lbl">GCP Cert Valid Through</div>
+  </div>
+</div>
   </header>
 
   <section id="about">
