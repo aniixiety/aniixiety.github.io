@@ -163,6 +163,24 @@
   letter-spacing:0.06em;
   text-transform:uppercase;
 }
+ .project-link{
+  margin-top:auto;
+  display:inline-block;
+  width:fit-content;
+  font-family:'IBM Plex Mono', monospace;
+  font-size:12px;
+  text-transform:uppercase;
+  letter-spacing:0.08em;
+  color:var(--teal);
+  text-decoration:none;
+  border-bottom:1px solid var(--teal);
+  padding-bottom:2px;
+}
+
+.project-link:hover{
+  color:var(--amber);
+  border-color:var(--amber);
+}
 
   /* skills */
   .skill-groups{display:grid;grid-template-columns:1fr 1fr;gap:32px;}
@@ -401,24 +419,33 @@
   <div class="projects">
 
     <div class="project-card">
-      <span class="tag">Python</span>
-      <h3>Retail Sales Data Analysis using Python</h3>
-      <p>
-        Analyzed retail sales data using Python to identify monthly sales
-        trends, top-performing products, peak purchase hours, and city-wise
-        revenue. Applied data cleaning, exploratory data analysis, and
-        visualization techniques using Pandas and Matplotlib.
-      </p>
-    </div>
+  <span class="tag">Python</span>
+
+  <h3>Retail Sales Data Analysis using Python</h3>
+
+  <p>
+    Analyzed retail sales data using Python to identify monthly sales
+    trends, top-performing products, peak purchase hours, and city-wise
+    revenue. Applied data cleaning, exploratory data analysis,
+    and visualization techniques using Pandas and Matplotlib.
+  </p>
+
+  <a href="https://github.com/aniixiety/aniixiety.github.io/blob/main/Retail_Sales_Analysis.ipynb"
+   target="_blank"
+   rel="noopener">
+    View Project →
+</a>
+</div>
 
     <div class="project-card">
       <span class="tag">Coming Soon</span>
-      <h3>Healthcare SQL Analytics (In Progress)</h3>
+      <h3>Clinical Data Analytics using SQL (In Progress)</h3>
       <p>
         Currently learning SQL and designing an end-to-end healthcare
         analytics project focused on data quality, validation, and
-        operational reporting. This project will be added here upon
-        completion.
+        operational reporting. Building a real-world SQL 
+        project focused on clinical data validation, 
+        operational reporting, and data quality.
       </p>
     </div>
 
