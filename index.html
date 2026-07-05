@@ -151,15 +151,18 @@
     flex-direction:column;
     gap:10px;
   }
-  .project-card .tag{font-family:'IBM Plex Mono', monospace;font-size:11px;color:var(--amber);letter-spacing:0.06em;text-transform:uppercase;}
-  .project-card h3{font-family:'Fraunces', serif;font-weight:600;font-size:19px;}
-  .project-card p{font-size:14px;color:var(--ink-soft);}
-  .project-card.placeholder{
-    border-style:dashed;
-    color:var(--ink-soft);
-    justify-content:center;
-    align-items:flex-start;
-  }
+  .project-card .tag{
+  display:inline-block;
+  align-self:flex-start;
+  padding:4px 10px;
+  border:1px solid var(--line);
+  background:var(--paper);
+  font-family:'IBM Plex Mono', monospace;
+  font-size:11px;
+  color:var(--amber);
+  letter-spacing:0.06em;
+  text-transform:uppercase;
+}
 
   /* skills */
   .skill-groups{display:grid;grid-template-columns:1fr 1fr;gap:32px;}
@@ -290,7 +293,7 @@
 
 <div class="hero-buttons">
   <a href="resume/Aniket_Makhal_Resume_.pdf" class="btn btn-primary" target="_blank">
-    📄 Download Resume
+    📄 Resume
   </a>
 
   <a href="https://www.linkedin.com/in/aniketmakhal10/" class="btn btn-secondary" target="_blank">
@@ -300,6 +303,10 @@
   <a href="https://github.com/aniixiety" class="btn btn-secondary" target="_blank">
     💻 GitHub
   </a>
+
+  <a href="mailto:aniimac007@gmail.com" class="btn btn-secondary">
+  📧 Email Me
+</a>
 
 </div>
     <div class="trace-box">
@@ -385,35 +392,38 @@
   </section>
 
   <section id="projects">
-    <div class="section-head"><h2>Projects</h2><div class="rule"></div><span class="field-label">Data track</span></div>
-    <div class="projects">
-      <div class="project-card placeholder">
-        <span class="tag">Add project 1</span>
-        <h3>Slot for a SQL project</h3>
-        <p>Drop in a real query or schema project here once it's ready, ideally something with a
-          healthcare or operations flavor so it ties back to your background.</p>
-      </div>
-      <div class="project-card placeholder">
-        <span class="tag">Add project 2</span>
-        <h3>Slot for a Python project</h3>
-        <p>A small analysis or cleaning script works fine. Doesn't need to be huge, just needs to be
-          yours and explained clearly.</p>
-      </div>
-      <div class="project-card placeholder">
-        <span class="tag">Add project 3</span>
-        <h3>Slot for a combined project</h3>
-        <p>Something that touches both clinical data and analysis, this is the one that tells your
-          pivot story best.</p>
-      </div>
-      <div class="project-card placeholder">
-        <span class="tag">Optional</span>
-        <h3>Case study writeup</h3>
-        <p>A short writeup of a real documentation-quality problem you solved at OG Healthcare, told
-          with a data lens, also counts as a project.</p>
-      </div>
-    </div>
-  </section>
+  <div class="section-head">
+    <h2>Projects</h2>
+    <div class="rule"></div>
+    <span class="field-label">Data track</span>
+  </div>
 
+  <div class="projects">
+
+    <div class="project-card">
+      <span class="tag">Python</span>
+      <h3>Retail Sales Data Analysis using Python</h3>
+      <p>
+        Analyzed retail sales data using Python to identify monthly sales
+        trends, top-performing products, peak purchase hours, and city-wise
+        revenue. Applied data cleaning, exploratory data analysis, and
+        visualization techniques using Pandas and Matplotlib.
+      </p>
+    </div>
+
+    <div class="project-card">
+      <span class="tag">Coming Soon</span>
+      <h3>Healthcare SQL Analytics (In Progress)</h3>
+      <p>
+        Currently learning SQL and designing an end-to-end healthcare
+        analytics project focused on data quality, validation, and
+        operational reporting. This project will be added here upon
+        completion.
+      </p>
+    </div>
+
+  </div>
+</section>
   <section id="skills">
     <div class="section-head"><h2>Skills</h2><div class="rule"></div><span class="field-label">Both sides</span></div>
     <div class="skill-groups">
