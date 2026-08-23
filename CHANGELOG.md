@@ -1,5 +1,12 @@
 # Changelog
 
+## v1.3
+
+- Added Clinical Text Classification with GenAI-Assisted Labeling project, linked to GitHub repo
+- Reordered projects section, new classification project now listed first
+- Retail Sales Analysis moved to second position
+- SQL project placeholder retained in third position
+
 ## v1.2
 
 - Updated hero section
