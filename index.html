@@ -1,536 +1,728 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Aniket Makhal — Clinical Documentation & Healthcare Data</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,900&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --ink:#13232D;
-    --ink-soft:#4B5A63;
-    --paper:#EFEFE9;
-    --paper-soft:#E2E1D8;
-    --card:#FAFAF7;
-    --teal:#1F6F63;
-    --amber:#D98E3B;
-    --line:#CFCEC3;
-    --radius:2px;
-  }
-  *{box-sizing:border-box;margin:0;padding:0;}
-  html{scroll-behavior:smooth;}
-  body{
-    background:var(--paper);
-    color:var(--ink);
-    font-family:'IBM Plex Sans', sans-serif;
-    line-height:1.6;
-    -webkit-font-smoothing:antialiased;
-  }
-  a{color:var(--teal);}
-  a:focus-visible, button:focus-visible{outline:2px solid var(--amber);outline-offset:3px;}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aniket Makhal — Clinical Documentation & Healthcare Data</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,900&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --ink: #13232D;
+      --ink-soft: #4B5A63;
+      --paper: #EFEFE9;
+      --paper-soft: #E2E1D8;
+      --card: #FAFAF7;
+      --teal: #1F6F63;
+      --amber: #D98E3B;
+      --line: #CFCEC3;
+      --radius: 2px;
+    }
 
-  .wrap{max-width:920px;margin:0 auto;padding:0 28px;}
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-  .field-label{
-    font-family:'IBM Plex Mono', monospace;
-    font-size:12px;
-    letter-spacing:0.12em;
-    text-transform:uppercase;
-    color:var(--teal);
-  }
+    html {
+      scroll-behavior: smooth;
+    }
 
-  /* ---------- HERO ---------- */
-  header.hero{
-    padding:72px 0 40px;
-    border-bottom:1px solid var(--line);
-  }
-  .hero-top{
-    display:flex;
-    justify-content:space-between;
-    align-items:flex-start;
-    flex-wrap:wrap;
-    gap:24px;
-    margin-bottom:40px;
-  }
-  .hero-status{
-    font-family:'IBM Plex Mono', monospace;
-    font-size:12px;
-    letter-spacing:0.08em;
-    color:var(--ink-soft);
-  }
-  .hero-status span{color:var(--teal);font-weight:500;}
-  h1{
-    font-family:'Fraunces', serif;
-    font-weight:600;
-    font-size:clamp(38px, 6vw, 64px);
-    line-height:1.05;
-    letter-spacing:-0.01em;
-  }
-  .tagline{
-    font-size:clamp(16px, 2vw, 19px);
-    color:var(--ink-soft);
-    max-width:540px;
-    margin-top:18px;
-  }
-  .tagline strong{color:var(--ink);font-weight:600;}
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: 'IBM Plex Sans', sans-serif;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
 
-  /* trace svg */
-  .trace-box{margin-top:44px;}
-  .trace-caption{
-    display:flex;
-    justify-content:space-between;
-    font-family:'IBM Plex Mono', monospace;
-    font-size:11px;
-    color:var(--ink-soft);
-    margin-top:8px;
-    letter-spacing:0.04em;
-  }
-  #trace-path{
-    stroke-dasharray:1400;
-    stroke-dashoffset:1400;
-    animation:draw 2.4s ease-out forwards;
-  }
-  @keyframes draw{ to{stroke-dashoffset:0;} }
+    a {
+      color: var(--teal);
+    }
 
-  /* vitals strip */
-  .vitals{
-    display:grid;
-    grid-template-columns:repeat(4, 1fr);
-    gap:1px;
-    background:var(--line);
-    border:1px solid var(--line);
-    margin-top:44px;
-  }
-  .vital{background:var(--card);padding:18px 16px;}
-  .vital .num{font-family:'Fraunces', serif;font-weight:600;font-size:26px;}
-  .vital .lbl{font-family:'IBM Plex Mono', monospace;font-size:10.5px;color:var(--ink-soft);letter-spacing:0.06em;text-transform:uppercase;margin-top:4px;}
+    a:focus-visible,
+    button:focus-visible {
+      outline: 2px solid var(--amber);
+      outline-offset: 3px;
+    }
 
-  /* ---------- SECTIONS ---------- */
-  section{padding:56px 0;border-bottom:1px solid var(--line);}
-  .section-head{display:flex;align-items:baseline;gap:14px;margin-bottom:28px;}
-  .section-head h2{
-    font-family:'Fraunces', serif;
-    font-weight:600;
-    font-size:26px;
-  }
-  .section-head .field-label{white-space:nowrap;}
-  .rule{flex:1;height:1px;background:var(--line);}
+    .wrap {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 0 28px;
+    }
 
-  p.body-text{max-width:640px;color:var(--ink-soft);}
-  p.body-text + p.body-text{margin-top:14px;}
+    .field-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--teal);
+    }
 
-  /* chart-entry style record for experience */
-  .record{
-    border:1px solid var(--line);
-    background:var(--card);
-    padding:26px 28px;
-  }
-  .record-row{
-    display:grid;
-    grid-template-columns:160px 1fr;
-    gap:8px 20px;
-    padding:10px 0;
-    border-bottom:1px dashed var(--line);
-  }
-  .record-row:last-child{border-bottom:none;}
-  .record-row .k{font-family:'IBM Plex Mono', monospace;font-size:12px;color:var(--ink-soft);letter-spacing:0.05em;text-transform:uppercase;}
-  .record-row .v{font-size:15px;}
-  .record-row ul{padding-left:18px;margin-top:4px;}
-  .record-row li{margin-bottom:6px;color:var(--ink-soft);}
-  .record-row li::marker{color:var(--amber);}
+    /* ---------- HERO ---------- */
+    header.hero {
+      padding: 72px 0 40px;
+      border-bottom: 1px solid var(--line);
+    }
 
-  /* projects */
-  .projects{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
-  .project-card{
-    border:1px solid var(--line);
-    background:var(--card);
-    padding:22px 24px;
-    display:flex;
-    flex-direction:column;
-    gap:10px;
-  }
-  .project-card .tag{
-  display:inline-block;
-  align-self:flex-start;
-  padding:4px 10px;
-  border:1px solid var(--line);
-  background:var(--paper);
-  font-family:'IBM Plex Mono', monospace;
-  font-size:11px;
-  color:var(--amber);
-  letter-spacing:0.06em;
-  text-transform:uppercase;
-}
- .project-link{
-  margin-top:auto;
-  display:inline-block;
-  width:fit-content;
-  font-family:'IBM Plex Mono', monospace;
-  font-size:12px;
-  text-transform:uppercase;
-  letter-spacing:0.08em;
-  color:var(--teal);
-  text-decoration:none;
-  border-bottom:1px solid var(--teal);
-  padding-bottom:2px;
-}
+    .hero-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 24px;
+      margin-bottom: 40px;
+    }
 
-.project-link:hover{
-  color:var(--amber);
-  border-color:var(--amber);
-}
+    .hero-status {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      color: var(--ink-soft);
+    }
 
-  /* skills */
-  .skill-groups{display:grid;grid-template-columns:1fr 1fr;gap:32px;}
-  .skill-group .field-label{margin-bottom:12px;display:block;}
-  .tag-row{display:flex;flex-wrap:wrap;gap:8px;}
-  .tag{
-    font-family:'IBM Plex Mono', monospace;
-    font-size:12.5px;
-    padding:6px 10px;
-    border:1px solid var(--line);
-    background:var(--card);
-    color:var(--ink);
-  }
+    .hero-status span {
+      color: var(--teal);
+      font-weight: 500;
+    }
 
-  /* certifications */
-  .cert-row{
-    display:flex;
-    justify-content:space-between;
-    align-items:baseline;
-    padding:14px 0;
-    border-bottom:1px dashed var(--line);
-    flex-wrap:wrap;
-    gap:6px;
-  }
-  .cert-row:last-child{border-bottom:none;}
-  .cert-row .name{font-weight:500;}
-  .cert-row .meta{font-family:'IBM Plex Mono', monospace;font-size:12px;color:var(--ink-soft);}
+    h1 {
+      font-family: 'Fraunces', serif;
+      font-weight: 600;
+      font-size: clamp(38px, 6vw, 64px);
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+    }
 
-  /* contact / footer */
-  footer{padding:64px 0 56px;}
-  footer h2{
-    font-family:'Fraunces', serif;
-    font-weight:600;
-    font-size:clamp(28px,4vw,40px);
-    max-width:560px;
-  }
-  .contact-links{display:flex;gap:28px;margin-top:26px;flex-wrap:wrap;}
-  .contact-links a{
-    font-family:'IBM Plex Mono', monospace;
-    font-size:14px;
-    text-decoration:none;
-    border-bottom:1px solid var(--teal);
-    padding-bottom:2px;
-  }
-  .foot-note{margin-top:48px;font-size:12px;color:var(--ink-soft);font-family:'IBM Plex Mono', monospace;}
+    .tagline {
+      font-size: clamp(16px, 2vw, 19px);
+      color: var(--ink-soft);
+      max-width: 540px;
+      margin-top: 18px;
+    }
 
-  @media(max-width:720px){
-    .vitals{grid-template-columns:repeat(2,1fr);}
-    .record-row{grid-template-columns:1fr;}
-    .projects{grid-template-columns:1fr;}
-    .skill-groups{grid-template-columns:1fr;}
-  }
+    .tagline strong {
+      color: var(--ink);
+      font-weight: 600;
+    }
 
-  @media(prefers-reduced-motion:reduce){
-    #trace-path{animation:none;stroke-dashoffset:0;}
-    html{scroll-behavior:auto;}
-  }
-  /* ===========================
+    /* trace svg */
+    .trace-box {
+      margin-top: 44px;
+    }
+
+    .trace-caption {
+      display: flex;
+      justify-content: space-between;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      color: var(--ink-soft);
+      margin-top: 8px;
+      letter-spacing: 0.04em;
+    }
+
+    #trace-path {
+      stroke-dasharray: 1400;
+      stroke-dashoffset: 1400;
+      animation: draw 2.4s ease-out forwards;
+    }
+
+    @keyframes draw {
+      to {
+        stroke-dashoffset: 0;
+      }
+    }
+
+    /* vitals strip */
+    .vitals {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--line);
+      border: 1px solid var(--line);
+      margin-top: 44px;
+    }
+
+    .vital {
+      background: var(--card);
+      padding: 18px 16px;
+    }
+
+    .vital .num {
+      font-family: 'Fraunces', serif;
+      font-weight: 600;
+      font-size: 26px;
+    }
+
+    .vital .lbl {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10.5px;
+      color: var(--ink-soft);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+
+    /* ---------- SECTIONS ---------- */
+    section {
+      padding: 56px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .section-head {
+      display: flex;
+      align-items: baseline;
+      gap: 14px;
+      margin-bottom: 28px;
+    }
+
+    .section-head h2 {
+      font-family: 'Fraunces', serif;
+      font-weight: 600;
+      font-size: 26px;
+    }
+
+    .section-head .field-label {
+      white-space: nowrap;
+    }
+
+    .rule {
+      flex: 1;
+      height: 1px;
+      background: var(--line);
+    }
+
+    p.body-text {
+      max-width: 640px;
+      color: var(--ink-soft);
+    }
+
+    p.body-text+p.body-text {
+      margin-top: 14px;
+    }
+
+    /* chart-entry style record for experience */
+    .record {
+      border: 1px solid var(--line);
+      background: var(--card);
+      padding: 26px 28px;
+    }
+
+    .record-row {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 8px 20px;
+      padding: 10px 0;
+      border-bottom: 1px dashed var(--line);
+    }
+
+    .record-row:last-child {
+      border-bottom: none;
+    }
+
+    .record-row .k {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 12px;
+      color: var(--ink-soft);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .record-row .v {
+      font-size: 15px;
+    }
+
+    .record-row ul {
+      padding-left: 18px;
+      margin-top: 4px;
+    }
+
+    .record-row li {
+      margin-bottom: 6px;
+      color: var(--ink-soft);
+    }
+
+    .record-row li::marker {
+      color: var(--amber);
+    }
+
+    /* projects */
+    .projects {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .project-card {
+      border: 1px solid var(--line);
+      background: var(--card);
+      padding: 22px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .project-card .tag {
+      display: inline-block;
+      align-self: flex-start;
+      padding: 4px 10px;
+      border: 1px solid var(--line);
+      background: var(--paper);
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      color: var(--amber);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .project-link {
+      margin-top: auto;
+      display: inline-block;
+      width: fit-content;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--teal);
+      text-decoration: none;
+      border-bottom: 1px solid var(--teal);
+      padding-bottom: 2px;
+    }
+
+    .project-link:hover {
+      color: var(--amber);
+      border-color: var(--amber);
+    }
+
+    /* skills */
+    .skill-groups {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+
+    .skill-group .field-label {
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tag {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 12.5px;
+      padding: 6px 10px;
+      border: 1px solid var(--line);
+      background: var(--card);
+      color: var(--ink);
+    }
+
+    /* certifications */
+    .cert-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 14px 0;
+      border-bottom: 1px dashed var(--line);
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .cert-row:last-child {
+      border-bottom: none;
+    }
+
+    .cert-row .name {
+      font-weight: 500;
+    }
+
+    .cert-row .meta {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 12px;
+      color: var(--ink-soft);
+    }
+
+    /* contact / footer */
+    footer {
+      padding: 64px 0 56px;
+    }
+
+    footer h2 {
+      font-family: 'Fraunces', serif;
+      font-weight: 600;
+      font-size: clamp(28px, 4vw, 40px);
+      max-width: 560px;
+    }
+
+    .contact-links {
+      display: flex;
+      gap: 28px;
+      margin-top: 26px;
+      flex-wrap: wrap;
+    }
+
+    .contact-links a {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 14px;
+      text-decoration: none;
+      border-bottom: 1px solid var(--teal);
+      padding-bottom: 2px;
+    }
+
+    .foot-note {
+      margin-top: 48px;
+      font-size: 12px;
+      color: var(--ink-soft);
+      font-family: 'IBM Plex Mono', monospace;
+    }
+
+    @media(max-width:720px) {
+      .vitals {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .record-row {
+        grid-template-columns: 1fr;
+      }
+
+      .projects {
+        grid-template-columns: 1fr;
+      }
+
+      .skill-groups {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media(prefers-reduced-motion:reduce) {
+      #trace-path {
+        animation: none;
+        stroke-dashoffset: 0;
+      }
+
+      html {
+        scroll-behavior: auto;
+      }
+    }
+
+    /* ===========================
    HERO BUTTONS
 =========================== */
 
-.hero-buttons{
-  display:flex;
-  gap:14px;
-  flex-wrap:wrap;
-  margin:28px 0 34px;
-}
+    .hero-buttons {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin: 28px 0 34px;
+    }
 
-.btn{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  padding:12px 20px;
-  border-radius:2px;
-  text-decoration:none;
-  font-family:'IBM Plex Mono', monospace;
-  font-size:13px;
-  transition:all .2s ease;
-}
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 20px;
+      border-radius: 2px;
+      text-decoration: none;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 13px;
+      transition: all .2s ease;
+    }
 
-.btn-primary{
-  background:var(--teal);
-  color:#fff;
-  border:1px solid var(--teal);
-}
+    .btn-primary {
+      background: var(--teal);
+      color: #fff;
+      border: 1px solid var(--teal);
+    }
 
-.btn-primary:hover{
-  background:#18584f;
-}
+    .btn-primary:hover {
+      background: #18584f;
+    }
 
-.btn-secondary{
-  border:1px solid var(--teal);
-  color:var(--teal);
-  background:transparent;
-}
+    .btn-secondary {
+      border: 1px solid var(--teal);
+      color: var(--teal);
+      background: transparent;
+    }
 
-.btn-secondary:hover{
-  background:var(--teal);
-  color:#fff;
-}
-</style>
+    .btn-secondary:hover {
+      background: var(--teal);
+      color: #fff;
+    }
+  </style>
 </head>
+
 <body>
 
-<div class="wrap">
+  <div class="wrap">
 
-  <header class="hero">
-    <div class="hero-top">
-      <div>
-        <div class="hero-status">STATUS: <span>OPEN TO WORK</span> — MUMBAI, INDIA</div>
-        <h1>Aniket Makhal</h1>
+    <header class="hero">
+      <div class="hero-top">
+        <div>
+          <div class="hero-status">STATUS: <span>OPEN TO WORK</span> — MUMBAI, INDIA</div>
+          <h1>Aniket Makhal</h1>
+        </div>
       </div>
-    </div>
 
-    <p class="tagline">
-  Over 5 years of experience supporting US healthcare operations
-  through accurate clinical documentation, data quality,
-  and physician workflows.
+      <p class="tagline">
+        Over 5 years of experience supporting US healthcare operations
+        through accurate clinical documentation, data quality,
+        and physician workflows.
 
-  I'm now building on that foundation with SQL, Python,
-  and analytics to transition into
+        I'm now building on that foundation with SQL, Python,
+        and analytics to transition into
 
-  <strong>
-    Clinical Data Operations • Healthcare Analytics •
-    Data Quality • SQL • Python
-  </strong>
-</p>
+        <strong>
+          Clinical Data Operations • Healthcare Analytics •
+          Data Quality • SQL • Python
+        </strong>
+      </p>
 
-<div class="hero-buttons">
-  <a href="resume/Aniket_Makhal_Resume_.pdf" class="btn btn-primary" target="_blank">
-    📄 Resume
-  </a>
+      <div class="hero-buttons">
+        <a href="resume/Aniket_Makhal_Resume_.pdf" class="btn btn-primary" target="_blank">
+          📄 Resume
+        </a>
 
-  <a href="https://www.linkedin.com/in/aniketmakhal10/" class="btn btn-secondary" target="_blank">
-    💼 LinkedIn
-  </a>
+        <a href="https://www.linkedin.com/in/aniketmakhal10/" class="btn btn-secondary" target="_blank">
+          💼 LinkedIn
+        </a>
 
-  <a href="https://github.com/aniixiety" class="btn btn-secondary" target="_blank">
-    💻 GitHub
-  </a>
+        <a href="https://github.com/aniixiety" class="btn btn-secondary" target="_blank">
+          💻 GitHub
+        </a>
 
-  <a href="mailto:aniimac007@gmail.com" class="btn btn-secondary">
-  📧 Email Me
-</a>
+        <a href="mailto:aniimac007@gmail.com" class="btn btn-secondary">
+          📧 Email Me
+        </a>
 
-</div>
-    <div class="trace-box">
-      <svg viewBox="0 0 900 120" width="100%" height="110" preserveAspectRatio="none" role="img" aria-label="Line drawing that moves from a heartbeat waveform into a data chart trace">
-        <path id="trace-path"
-          d="M0,60 L100,60 L120,60 L135,20 L150,100 L165,10 L180,80 L195,60 L260,60
+      </div>
+      <div class="trace-box">
+        <svg viewBox="0 0 900 120" width="100%" height="110" preserveAspectRatio="none" role="img"
+          aria-label="Line drawing that moves from a heartbeat waveform into a data chart trace">
+          <path id="trace-path" d="M0,60 L100,60 L120,60 L135,20 L150,100 L165,10 L180,80 L195,60 L260,60
              L300,60 L330,45 L360,65 L390,35 L420,70 L450,50 L480,60
              L520,60 L550,40 L580,55 L610,25 L640,68 L670,45 L700,60
-             L900,60"
-          fill="none" stroke="var(--ink)" stroke-width="2"/>
-        <path d="M330,45 L360,65 L390,35 L420,70 L450,50 L480,60 L520,60 L550,40 L580,55 L610,25 L640,68 L670,45 L700,60"
-          fill="none" stroke="var(--amber)" stroke-width="2.5"/>
-        <path d="M120,60 L135,20 L150,100 L165,10 L180,80 L195,60"
-          fill="none" stroke="var(--teal)" stroke-width="2.5"/>
-      </svg>
-      <div class="trace-caption">
-        <span>clinical signal</span>
-        <span>→</span>
-        <span>data signal</span>
-      </div>
-    </div>
-
-    <div class="vitals">
-  <div class="vital">
-    <div class="num">5+</div>
-    <div class="lbl">Years in US Healthcare Operations</div>
-  </div>
-
-  <div class="vital">
-    <div class="num">7+</div>
-    <div class="lbl">Specialties Supported</div>
-  </div>
-
-  <div class="vital">
-    <div class="num">7+</div>
-    <div class="lbl">EHR Platforms</div>
-  </div>
-
-  <div class="vital">
-    <div class="num">2028</div>
-    <div class="lbl">GCP Cert Valid Through</div>
-  </div>
-</div>
-  </header>
-
-  <section id="about">
-    <div class="section-head"><h2>About</h2><div class="rule"></div><span class="field-label">Summary</span></div>
-    <p class="body-text">Over the past 5+ years, I've supported US telehealth physicians in real time 
-      across 7+ specialties and 7+ EHR platforms, including Athenahealth, Kareo, NextGen, Allscripts, 
-      Practice Fusion, and AdvancedMD.</p>
-    <p class="body-text">I'm now formalizing the analytical half of that skill set through an Advanced
-      Data Science and AI program, with a completed Python certification and applied SQL work
-      demonstrated through hands-on projects. GCP ICH E6(R3) certification already in hand,
-      familiar with EDC, CTMS, and eTMF terminology. B.Pharm from Gautham College of Pharmacy,
-      Bengaluru, 2020.</p>
-  </section>
-
-  <section id="experience">
-    <div class="section-head"><h2>Experience</h2><div class="rule"></div><span class="field-label">Chart entry</span></div>
-    <div class="record">
-      <div class="record-row">
-        <div class="k">Role</div>
-        <div class="v">Senior Medical Scribe, OG Healthcare</div>
-      </div>
-      <div class="record-row">
-        <div class="k">Duration</div>
-        <div class="v">December 2020 to March 2026</div>
-      </div>
-      <div class="record-row">
-        <div class="k">Scope</div>
-        <div class="v">Live clinical documentation for US telehealth physicians across seven-plus
-          specialties, working inside seven-plus EHR platforms.</div>
-      </div>
-      <div class="record-row">
-        <div class="k">Highlights</div>
-        <div class="v">
-          <ul>
-            <li>Progressed through five internal tiers to Senior Medical Documentation Specialist level</li>
-            <li>Maintained HIPAA-compliant documentation accuracy at high volume, in real time</li>
-            <li>Built multi-EHR fluency that translates directly into data structure and validation work</li>
-          </ul>
+             L900,60" fill="none" stroke="var(--ink)" stroke-width="2" />
+          <path
+            d="M330,45 L360,65 L390,35 L420,70 L450,50 L480,60 L520,60 L550,40 L580,55 L610,25 L640,68 L670,45 L700,60"
+            fill="none" stroke="var(--amber)" stroke-width="2.5" />
+          <path d="M120,60 L135,20 L150,100 L165,10 L180,80 L195,60" fill="none" stroke="var(--teal)"
+            stroke-width="2.5" />
+        </svg>
+        <div class="trace-caption">
+          <span>clinical signal</span>
+          <span>→</span>
+          <span>data signal</span>
         </div>
       </div>
-    </div>
-  </section>
 
-  <section id="projects">
-  <div class="section-head">
-    <h2>Projects</h2>
-    <div class="rule"></div>
-    <span class="field-label">Data track</span>
-  </div>
+      <div class="vitals">
+        <div class="vital">
+          <div class="num">5+</div>
+          <div class="lbl">Years in US Healthcare Operations</div>
+        </div>
 
-  <div class="projects">
+        <div class="vital">
+          <div class="num">7+</div>
+          <div class="lbl">Specialties Supported</div>
+        </div>
 
-    <div class="project-card">
-      <span class="tag">Python + SQL + GenAI</span>
-      <h3>Clinical Text Classification with GenAI-Assisted Labeling</h3>
-      <p>
-        Built a text classification pipeline on 2,500+ real clinical notes to predict
-        medical specialty, using TF-IDF and Logistic Regression. Used SQL queries
-        against a SQLite database for per-specialty error analysis, and manually
-        compared LLM-assisted pre-labeling against the model's predictions to study
-        labeling consistency and ambiguity handling.
-      </p>
-      <a href="https://github.com/aniixiety/clinical-text-classification"
-       target="_blank"
-       rel="noopener">
-        View Project →
-      </a>
-    </div>
+        <div class="vital">
+          <div class="num">7+</div>
+          <div class="lbl">EHR Platforms</div>
+        </div>
 
-    <div class="project-card">
-      <span class="tag">SQL</span>
-      <h3>Clinical Data Analytics using SQL</h3>
-      <p>
-        Engineered a relational SQLite database from raw structured and semi-structured datasets (100,000+ patient records). Developed complex SQL queries to audit RCM payment statuses, analyze provider workloads, and expose synthetic data anomalies (e.g., 1:1 staffing ratios, identical clinical distributions). Translated technical outputs into actionable business insights.
-      </p>
-      <a href="https://github.com/aniixiety/healthcare-clinic-sql-analytics"
-       target="_blank"
-       rel="noopener">
-        View Project →
-      </a>
-    </div>
-
-    <div class="project-card">
-      <span class="tag">Python</span>
-      <h3>Retail Sales Data Analysis using Python</h3>
-      <p>
-        Analyzed retail sales data using Python to identify monthly sales
-        trends, top-performing products, peak purchase hours, and city-wise
-        revenue. Applied data cleaning, exploratory data analysis,
-        and visualization techniques using Pandas and Matplotlib.
-      </p>
-      <a href="https://github.com/aniixiety/aniixiety.github.io/blob/main/Retail_Sales_Analysis.ipynb"
-       target="_blank"
-       rel="noopener">
-        View Project →
-      </a>
-    </div>
-
-    <div class="project-card">
-      <span class="tag">Coming Soon</span>
-      <h3>More Upcoming Projects</h3>
-      <p>
-        Continuously exploring new datasets to build impactful projects at the intersection of clinical operations, data analytics, and machine learning. Stay tuned for what's next!
-      </p>
-    </div>
-
-  </div>
-</section>
-  <section id="skills">
-    <div class="section-head"><h2>Skills</h2><div class="rule"></div><span class="field-label">Both sides</span></div>
-    <div class="skill-groups">
-      <div class="skill-group">
-        <span class="field-label">Clinical Systems</span>
-        <div class="tag-row">
-          <span class="tag">Athenahealth</span>
-          <span class="tag">Kareo</span>
-          <span class="tag">NextGen</span>
-          <span class="tag">Allscripts</span>
-          <span class="tag">Practice Fusion</span>
-          <span class="tag">AdvancedMD</span>
-          <span class="tag">HIPAA Documentation</span>
+        <div class="vital">
+          <div class="num">2028</div>
+          <div class="lbl">GCP Cert Valid Through</div>
         </div>
       </div>
-      <div class="skill-group">
-        <span class="field-label">Data & Analytics</span>
-        <div class="tag-row">
-          <span class="tag">Python</span>
+    </header>
+
+    <section id="about">
+      <div class="section-head">
+        <h2>About</h2>
+        <div class="rule"></div><span class="field-label">Summary</span>
+      </div>
+      <p class="body-text">Over the past 5+ years, I've supported US telehealth physicians in real time
+        across 7+ specialties and 7+ EHR platforms, including Athenahealth, Kareo, NextGen, Allscripts,
+        Practice Fusion, and AdvancedMD.</p>
+      <p class="body-text">I'm now formalizing the analytical half of that skill set through an Advanced
+        Data Science and AI program, with a completed Python certification and applied SQL work
+        demonstrated through hands-on projects. GCP ICH E6(R3) certification already in hand,
+        familiar with EDC, CTMS, and eTMF terminology. B.Pharm from Gautham College of Pharmacy,
+        Bengaluru, 2020.</p>
+    </section>
+
+    <section id="experience">
+      <div class="section-head">
+        <h2>Experience</h2>
+        <div class="rule"></div><span class="field-label">Chart entry</span>
+      </div>
+      <div class="record">
+        <div class="record-row">
+          <div class="k">Role</div>
+          <div class="v">Senior Medical Scribe, OG Healthcare</div>
+        </div>
+        <div class="record-row">
+          <div class="k">Duration</div>
+          <div class="v">December 2020 to March 2026</div>
+        </div>
+        <div class="record-row">
+          <div class="k">Scope</div>
+          <div class="v">Live clinical documentation for US telehealth physicians across seven-plus
+            specialties, working inside seven-plus EHR platforms.</div>
+        </div>
+        <div class="record-row">
+          <div class="k">Highlights</div>
+          <div class="v">
+            <ul>
+              <li>Progressed through five internal tiers to Senior Medical Documentation Specialist level</li>
+              <li>Maintained HIPAA-compliant documentation accuracy at high volume, in real time</li>
+              <li>Built multi-EHR fluency that translates directly into data structure and validation work</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="section-head">
+        <h2>Projects</h2>
+        <div class="rule"></div>
+        <span class="field-label">Data track</span>
+      </div>
+
+      <div class="projects">
+
+        <div class="project-card">
+          <span class="tag">Python + SQL + GenAI</span>
+          <h3>Clinical Text Classification with GenAI-Assisted Labeling</h3>
+          <p>
+            Built a text classification pipeline on 2,500+ real clinical notes to predict
+            medical specialty, using TF-IDF and Logistic Regression. Used SQL queries
+            against a SQLite database for per-specialty error analysis, and manually
+            compared LLM-assisted pre-labeling against the model's predictions to study
+            labeling consistency and ambiguity handling.
+          </p>
+          <a href="https://github.com/aniixiety/clinical-text-classification" target="_blank" rel="noopener">
+            View Project →
+          </a>
+        </div>
+
+        <div class="project-card">
           <span class="tag">SQL</span>
-          <span class="tag">Data Validation</span>
-          <span class="tag">Discrepancy Resolution</span>
+          <h3>Clinical Data Analytics using SQL</h3>
+          <p>
+            Engineered a relational SQLite database from raw structured and semi-structured datasets (100,000+ patient
+            records). Developed complex SQL queries to audit RCM payment statuses, analyze provider workloads, and
+            expose synthetic data anomalies (e.g., 1:1 staffing ratios, identical clinical distributions). Translated
+            technical outputs into actionable business insights.
+          </p>
+          <a href="https://github.com/aniixiety/aniixiety.github.io/tree/main/healthcare-clinic-sql-analytics"
+            target="_blank" rel="noopener">
+            View Project →
+          </a>
+        </div>
+
+        <div class="project-card">
+          <span class="tag">Python</span>
+          <h3>Retail Sales Data Analysis using Python</h3>
+          <p>
+            Analyzed retail sales data using Python to identify monthly sales
+            trends, top-performing products, peak purchase hours, and city-wise
+            revenue. Applied data cleaning, exploratory data analysis,
+            and visualization techniques using Pandas and Matplotlib.
+          </p>
+          <a href="https://github.com/aniixiety/aniixiety.github.io/blob/main/Retail_Sales_Analysis.ipynb"
+            target="_blank" rel="noopener">
+            View Project →
+          </a>
+        </div>
+
+        <div class="project-card">
+          <span class="tag">Coming Soon</span>
+          <h3>More Upcoming Projects</h3>
+          <p>
+            Continuously exploring new datasets to build impactful projects at the intersection of clinical operations,
+            data analytics, and machine learning. Stay tuned for what's next!
+          </p>
+        </div>
+
+      </div>
+    </section>
+    <section id="skills">
+      <div class="section-head">
+        <h2>Skills</h2>
+        <div class="rule"></div><span class="field-label">Both sides</span>
+      </div>
+      <div class="skill-groups">
+        <div class="skill-group">
+          <span class="field-label">Clinical Systems</span>
+          <div class="tag-row">
+            <span class="tag">Athenahealth</span>
+            <span class="tag">Kareo</span>
+            <span class="tag">NextGen</span>
+            <span class="tag">Allscripts</span>
+            <span class="tag">Practice Fusion</span>
+            <span class="tag">AdvancedMD</span>
+            <span class="tag">HIPAA Documentation</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <span class="field-label">Data & Analytics</span>
+          <div class="tag-row">
+            <span class="tag">Python</span>
+            <span class="tag">SQL</span>
+            <span class="tag">Data Validation</span>
+            <span class="tag">Discrepancy Resolution</span>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section id="certifications">
-    <div class="section-head"><h2>Certifications</h2><div class="rule"></div><span class="field-label">On file</span></div>
-    <div class="cert-row">
-      <span class="name">GCP ICH E6(R3), TransCelerate-recognized</span>
-      <span class="meta">Score 98% — valid through May 2028</span>
-    </div>
-    <div class="cert-row">
-      <span class="name">Maharashtra State Pharmacy Council Registration</span>
-      <span class="meta">Permanent — valid to 2054</span>
-    </div>
-    <div class="cert-row">
-      <span class="name">Python Certification, Learnbay Advanced Data Science and AI Program</span>
-      <span class="meta">In progress</span>
-    </div>
-  </section>
+    <section id="certifications">
+      <div class="section-head">
+        <h2>Certifications</h2>
+        <div class="rule"></div><span class="field-label">On file</span>
+      </div>
+      <div class="cert-row">
+        <span class="name">GCP ICH E6(R3), TransCelerate-recognized</span>
+        <span class="meta">Score 98% — valid through May 2028</span>
+      </div>
+      <div class="cert-row">
+        <span class="name">Maharashtra State Pharmacy Council Registration</span>
+        <span class="meta">Permanent — valid to 2054</span>
+      </div>
+      <div class="cert-row">
+        <span class="name">Python Certification, Learnbay Advanced Data Science and AI Program</span>
+        <span class="meta">In progress</span>
+      </div>
+    </section>
 
-  <footer id="contact">
-    <span class="field-label">Get in touch</span>
-    <h2>If a healthcare data or clinical ops role needs someone who has actually worked inside the
-      systems, I'd like to talk.</h2>
-    <div class="contact-links">
-      <a href="mailto:aniimac007@gmail.com">aniimac007@gmail.com</a>
-      <a href="https://linkedin.com/in/aniketmakhal10" target="_blank" rel="noopener">linkedin.com/in/aniketmakhal10</a>
-    </div>
-    <div class="foot-note">Mumbai, India</div>
-  </footer>
+    <footer id="contact">
+      <span class="field-label">Get in touch</span>
+      <h2>If a healthcare data or clinical ops role needs someone who has actually worked inside the
+        systems, I'd like to talk.</h2>
+      <div class="contact-links">
+        <a href="mailto:aniimac007@gmail.com">aniimac007@gmail.com</a>
+        <a href="https://linkedin.com/in/aniketmakhal10" target="_blank"
+          rel="noopener">linkedin.com/in/aniketmakhal10</a>
+      </div>
+      <div class="foot-note">Mumbai, India</div>
+    </footer>
 
-</div>
+  </div>
 
 </body>
+
 </html>
