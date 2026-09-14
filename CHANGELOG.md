@@ -5,6 +5,7 @@
 - Updated Clinical Data Analytics using SQL project description, patient record count corrected to 20,000+
 - Rewrote SQL project description to remove RCM wording and reflect actual work (data quality audits, cancellation and financial analysis, window functions for top doctor per specialty)
 - Changed accent color across the site from teal to orange
+- Added favicon.png and apple-touch-icon.png using the actual logo, background recolored to match site orange accent, linked in head
 
 ## v1.4
 
