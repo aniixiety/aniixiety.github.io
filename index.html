@@ -324,6 +324,27 @@
     <div class="section-head"><span class="idx">03</span><h2>Projects</h2><div class="rule"></div></div>
     <div class="projects">
       <div class="project-card">
+        <span class="tag">SQL + BigQuery + GenAI</span>
+        <h3>Football Analytics with BigQuery and a NL-to-SQL Chatbot</h3>
+        <p>Built an end-to-end pipeline in BigQuery covering 9+ relational tables, then trained a
+          three-class match outcome model (home win, away win, draw). Identified and fixed a temporal
+          data leakage issue by rebuilding features to use only pre-match information and switching to
+          a chronological train/test split. Finished with a Streamlit chatbot that translates plain
+          English questions into live SQL queries against the database, with conversation memory for
+          follow-ups.</p>
+        <a class="project-link" href="https://github.com/aniixiety/football-analytics-bigquery" target="_blank" rel="noopener">view project</a>
+      </div>
+      <div class="project-card">
+        <span class="tag">React + Express + Prototype</span>
+        <h3>Clinical Documentation QA Assistant</h3>
+        <p>A health-tech prototype that reviews synthetic clinical notes and flags documentation gaps
+          as present, missing, or unclear, using context-aware evaluation logic rather than a fixed
+          checklist. Testing surfaced a false-positive bug where keyword matching misread explicit
+          absence statements as present findings, refined to require actual supporting evidence
+          instead. Uses synthetic data only and is not intended for clinical decision-making.</p>
+        <a class="project-link" href="https://clinical-documentation-qa-assistant--aniixiety.replit.app/" target="_blank" rel="noopener">view project</a>
+      </div>
+      <div class="project-card">
         <span class="tag">Python + SQL + GenAI</span>
         <h3>Clinical Text Classification with GenAI-Assisted Labeling</h3>
         <p>Built a text classification pipeline on 2,500+ real clinical notes to predict medical
@@ -353,9 +374,8 @@
       </div>
       <div class="project-card muted">
         <span class="tag">In progress</span>
-        <h3>More upcoming projects</h3>
-        <p>Continuously exploring new datasets to build impactful projects at the intersection of
-          clinical operations, data analytics, and machine learning. Stay tuned for what's next.</p>
+        <h3>More projects coming soon</h3>
+        <p>Stay tuned for what's next.</p>
       </div>
     </div>
   </div>
